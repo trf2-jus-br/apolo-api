@@ -7,7 +7,7 @@ public class SistemaProcessualServiceTest extends SwaggerTestSupport {
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected Class getAPI() {
-		return EprocServlet.class;
+		return ApoloServlet.class;
 	}
 
 	@Override

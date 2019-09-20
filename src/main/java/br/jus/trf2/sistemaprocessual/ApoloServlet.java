@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import com.crivano.swaggerservlet.SwaggerServlet;
 import com.crivano.swaggerservlet.dependency.TestableDependency;
 
-public class EprocServlet extends SwaggerServlet {
+public class ApoloServlet extends SwaggerServlet {
 	private static final long serialVersionUID = 1756711359239182178L;
 
 	@Override

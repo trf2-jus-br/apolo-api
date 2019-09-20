@@ -68,7 +68,7 @@
 
 
 	<build>
-		<finalName>eproc-api</finalName>
+		<finalName>apolo-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
