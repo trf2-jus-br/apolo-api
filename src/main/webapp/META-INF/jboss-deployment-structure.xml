@@ -8,6 +8,7 @@
 			<module name="org.javassist" />
 			<module name="org.infinispan" />
 			<module name="org.hibernate.commons-annotations" />
+			<module name="com.oracle.ojdbc6" />
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>

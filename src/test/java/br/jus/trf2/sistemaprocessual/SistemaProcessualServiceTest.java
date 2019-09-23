@@ -2,6 +2,8 @@ package br.jus.trf2.sistemaprocessual;
 
 import com.crivano.swaggerservlet.SwaggerTestSupport;
 
+import br.jus.trf2.apoloapi.ApoloServlet;
+
 public class SistemaProcessualServiceTest extends SwaggerTestSupport {
 
 	@SuppressWarnings("rawtypes")
