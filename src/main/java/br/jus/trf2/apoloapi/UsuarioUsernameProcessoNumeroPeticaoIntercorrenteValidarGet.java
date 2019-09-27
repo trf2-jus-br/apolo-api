@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.crivano.swaggerservlet.SwaggerServlet;
+
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.TipoPeticaoIntercorrente;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGetRequest;
@@ -20,45 +22,19 @@ public class UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGet
 
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn.prepareStatement(
-						Utils.getSQL("usuario-username-processo-numero-peticao-intercorrente-tipos-documento-get"));
-				PreparedStatement q2 = conn.prepareStatement(
-						Utils.getSQL("usuario-username-processo-numero-peticao-intercorrente-ident-encerra-prazos"));
-				PreparedStatement q3 = conn.prepareStatement(
-						Utils.getSQL("usuario-username-processo-numero-peticao-intercorrente-sigilo"))) {
-
-			q.setString(1, req.username);
-			q.setString(2, req.numero);
+						Utils.getSQL("usuario-username-processo-numero-peticao-intercorrente-tipos-documento-get"))) {
 
 			ResultSet rs = q.executeQuery();
 
 			while (rs.next()) {
 				TipoPeticaoIntercorrente in = new TipoPeticaoIntercorrente();
 				in.id = rs.getString("id");
+				if (in.id.equals("138") && SwaggerServlet.getProperty("orgao.sigla").equals("JFRJ"))
+					continue;
 				in.descricao = rs.getString("nome");
 				resp.tipos.add(in);
 			}
-
-			q2.setString(1, req.numero);
-			q2.setString(2, req.username);
-			q2.setString(3, req.numero);
-			q2.setString(4, req.username);
-
-			ResultSet rs2 = q2.executeQuery();
-
-			while (rs2.next()) {
-				resp.identencerraprazos = rs2.getString("identEncerraPrazos");
-			}
-
-			q3.setString(1, req.username);
-			q3.setString(2, req.numero);
-
-			ResultSet rs3 = q3.executeQuery();
-
-			while (rs3.next()) {
-				resp.sigilo = rs3.getDouble("sigilo");
-				resp.parte = rs3.getBoolean("parte");
-			}
-
+			resp.sigilo = 1.0;
 		}
 	}
 

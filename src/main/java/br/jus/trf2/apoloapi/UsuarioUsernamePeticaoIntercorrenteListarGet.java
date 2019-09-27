@@ -3,9 +3,10 @@ package br.jus.trf2.apoloapi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.Contagem;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernamePeticaoIntercorrenteListarGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.PeticaoIntercorrente;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernamePeticaoIntercorrenteListarGetRequest;
@@ -19,19 +20,23 @@ public class UsuarioUsernamePeticaoIntercorrenteListarGet implements IUsuarioUse
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn
 						.prepareStatement(Utils.getSQL("usuario-username-peticao-intercorrente-listar-get"))) {
-			q.setString(1, req.username);
-			q.setDate(2, java.sql.Date.valueOf(req.data));
+			q.setString(1, req.username.toUpperCase());
+			q.setString(2, req.data);
+			q.setString(3, req.data.substring(0, 10) + " 23:59:59");
+			q.setString(4, req.username.toUpperCase());
+			q.setString(5, req.data);
+			q.setString(6, req.data.substring(0, 10) + " 23:59:59");
 			ResultSet rs = q.executeQuery();
 
 			resp.list = new ArrayList<>();
 			while (rs.next()) {
 				PeticaoIntercorrente p = new PeticaoIntercorrente();
-				p.classe = rs.getString("id_classe_judicial");
-				p.dataprotocolo = rs.getString("dth_inclusao");
+				p.classe = rs.getString("classe_processo");
+				p.dataprotocolo = rs.getString("data_protocolo");
 				p.protocolo = rs.getString("protocolo");
 				p.processo = rs.getString("num_processo");
-				p.unidade = rs.getString("sig_orgao");
-				resp.list.add(p); 
+				// p.unidade = rs.getString("sig_orgao");
+				resp.list.add(p);
 			}
 		}
 	}

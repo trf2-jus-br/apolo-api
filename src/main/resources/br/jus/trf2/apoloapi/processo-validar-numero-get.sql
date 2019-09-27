@@ -1,154 +1,63 @@
 select
-   s.descr as orgao,
-   (
-      select
-         lf.nome 
-      from
-         localfisico lf 
-      where
-         lf.codlocfis = 
-         (
-            select
-               localatualprocesso(pl.codsecao, 
-               (
-                  select
-                     coddoc 
-                  from
-                     t_processo p 
-                  where
-                     p.numproccompl = ? 
-                     or p.numproccomplant = ? 
-               )
-) 
-            from
-               dual 
-         )
-         and lf.indativo = 'S' 
-   )
-   as unidade,
-   (
-      select
-         va.nomesint 
-      from
-         vara va 
-      where
-         va.indativo = 'S' 
-         and va.codvara = 
-         (
-            select
-               localatualprocesso(pl.codsecao, 
-               (
-                  select
-                     coddoc 
-                  from
-                     t_processo p 
-                  where
-                     p.numproccompl = ? 
-                     or p.numproccomplant = ? 
-               )
-) 
-            from
-               dual 
-         )
-   )
-   as localnaunidade,
-   (
-      select
-         numproccompl 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as numero,
-   (
-      select
-         indsegrjustsist 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as segredodejusticadesistema,
-   (
-      select
-         indsegrjustabs 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as segredodejusticaabsoluto,
-   (
-      select
-         coddoc 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as coddoc,
-   (
-      select
-         indproceletr 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as eletronico,
-   (
-      select
-         indbaixa 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as baixado,
-   p.dthrultmov as dataultimomovimento,
-   (
-      select
-         indativo 
-      from
-         t_processo p 
-      where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
-   )
-   as ativo 
+( 
+   case
+      when
+         lc.codenvdoc = '10115' 
+         and lc.indreceb = 'S' 
+      then
+         1 
+      else
+         0 
+   end
+) as perdecompetencia , s.descr as orgao, lf.nome as unidade, va.nomesint as localnaunidade, t_processo.numproccompl as numero, t_processo.indsegrjustsist segredodejusticadesistema, t_processo.indsegrjustabs segredodejusticaabsoluto, t_processo.coddoc coddoc, t_processo.indproceletr eletronico, t_processo.indbaixa baixado, t_processo.dthrultmov as dataultimomovimento, t_processo.indativo as ativo 
 from
-   processolocal pl,
-   secao s,
-   t_processo p 
+   processolocal lc 
+   inner join
+      secao s 
+      on (s.codsecao = lc.codsecao) 
+   inner join
+      t_processo 
+      on ( lc.coddoc = t_processo.coddoc) 
+   inner join
+      vara va 
+      on (va.codvara = 
+      (
+         select
+            localatualprocesso(lc.codsecao, t_processo.coddoc)
+         from
+            dual
+      )
+      and va.indativo = 'S') 
+   inner join
+      localfisico lf 
+      on (lf.codlocfis = 
+      (
+         select
+            localatualprocesso(lc.codsecao, t_processo.coddoc)
+         from
+            dual
+      )
+      and lf.indativo = 'S'),
+      (
+         select
+            ? as num_processo 
+         from
+            dual 
+      )
+      processo 
 where
-   pl.coddoc = 
+   (
+      processo.num_processo = t_processo.numproccompl 
+      or processo.num_processo = t_processo.numproccomplant
+   )
+   and lc.dthrmov = 
    (
       select
-         coddoc 
+         max(pl.dthrmov) 
       from
-         t_processo p 
+         processolocal pl 
       where
-         p.numproccompl = ? 
-         or p.numproccomplant = ? 
+         pl.coddoc = lc.coddoc 
+         and pl.codsecao = lc.codsecao 
+         and pl.indreceb = 'S' 
    )
-   and pl.indreceb = 'S' 
-   and pl.dthrmov = 
-   (
-      select
-         max(pr.dthrmov) 
-      from
-         processolocal pr 
-      where
-         pr.coddoc = pl.coddoc 
-         and pr.codsecao = pl.codsecao 
-         and pr.indreceb = 'S' 
-   )
-   and s.codsecao = pl.codsecao 
-   and p.coddoc = pl.coddoc

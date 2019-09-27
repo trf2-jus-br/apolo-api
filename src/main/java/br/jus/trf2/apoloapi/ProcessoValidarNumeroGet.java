@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.crivano.swaggerservlet.SwaggerServlet;
-
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IProcessoValidarNumeroGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.ProcessoValidarNumeroGetRequest;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.ProcessoValidarNumeroGetResponse;

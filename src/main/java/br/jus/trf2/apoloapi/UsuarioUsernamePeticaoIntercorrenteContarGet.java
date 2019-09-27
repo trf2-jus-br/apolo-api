@@ -20,8 +20,10 @@ public class UsuarioUsernamePeticaoIntercorrenteContarGet implements IUsuarioUse
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn
 						.prepareStatement(Utils.getSQL("usuario-username-peticao-intercorrente-contar-get"))) {
-			q.setString(1, req.username);
+			q.setString(1, req.username.toUpperCase());
 			q.setInt(2, Integer.parseInt(req.dias));
+			q.setString(3, req.username.toUpperCase());
+			q.setInt(4, Integer.parseInt(req.dias));
 			ResultSet rs = q.executeQuery();
 
 			resp.list = new ArrayList<>();

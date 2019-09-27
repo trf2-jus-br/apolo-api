@@ -20,8 +20,7 @@ public class UsuarioUsernameProcessoNumeroGet implements IUsuarioUsernameProcess
 				PreparedStatement q = conn.prepareStatement(Utils.getSQL("processo-validar-numero-get"));
 				PreparedStatement q2 = conn.prepareStatement(Utils.getSQL("processo-validar-numero-get-localizacao"));
 				PreparedStatement q3 = conn.prepareStatement(Utils.getSQL("processo-validar-numero-get-sentenciado"))) {
-			for (int i = 1; i<=20; i++)
-				q.setString(i, req.numero);
+			q.setString(1, req.numero);
 			ResultSet rs = q.executeQuery();
 
 			while (rs.next()) {
@@ -29,24 +28,17 @@ public class UsuarioUsernameProcessoNumeroGet implements IUsuarioUsernameProcess
 					continue;
 				resp.numero = rs.getString("numero");
 				resp.unidade = rs.getString("unidade");
-				resp.localNaUnidade = rs.getString("localnaunidade"); // Apresentar
-																		// isso
-																		// apenas
-																		// para
-																		// o
-																		// público
-																		// interno
-				resp.usuarioautorizado = true; // Esse nós ainda precisamos
-												// descobrir como fazer para
-												// pesquisar?
+				resp.localNaUnidade = rs.getString("localnaunidade");
+				// Esse nós ainda precisamos
+				// descobrir como fazer para
+				// pesquisar?
+				resp.usuarioautorizado = true; 
 				resp.segredodejusticadesistema = "S".equals(rs.getString("segredodejusticadesistema"));
 				resp.segredodejusticaabsoluto = "S".equals(rs.getString("segredodejusticaabsoluto"));
 				resp.segredodejustica = resp.segredodejusticadesistema || resp.segredodejusticaabsoluto;
 				resp.eletronico = "S".equals(rs.getString("eletronico"));;
 				resp.baixado = "S".equals(rs.getString("baixado"));
-				//TODO: Lógica de perde competência
-				// resp.perdecompetencia = "S".equals(rs.getString("perdecompetencia"));
-				resp.perdecompetencia = false;
+				resp.perdecompetencia = "S".equals(rs.getString("perdecompetencia"));
 				// resp.cdas = rs.getString("cdas");
 				resp.dataultimomovimento = Utils.formatarDataHoraMinuto(rs.getTimestamp("dataultimomovimento"));
 				break;
