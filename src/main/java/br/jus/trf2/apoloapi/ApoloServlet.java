@@ -21,6 +21,9 @@ public class ApoloServlet extends SwaggerServlet {
 
 		setActionPackage("br.jus.trf2.apoloapi");
 
+		addPrivateProperty("password", null);
+		super.setAuthorization(getProperty("password"));
+
 		addPublicProperty("orgao.sigla");
 		
 		addRestrictedProperty("datasource.url", null);
