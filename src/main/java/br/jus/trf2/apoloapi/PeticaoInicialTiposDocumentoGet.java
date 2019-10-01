@@ -15,20 +15,7 @@ public class PeticaoInicialTiposDocumentoGet implements IPeticaoInicialTiposDocu
 	@Override
 	public void run(PeticaoInicialTiposDocumentoGetRequest req, PeticaoInicialTiposDocumentoGetResponse resp)
 			throws Exception {
-		resp.list = new ArrayList<>();
-
-		try (Connection conn = Utils.getConnection();
-				PreparedStatement q = conn.prepareStatement(Utils.getSQL("peticao-inicial-tipos-documento-get"))) {
-			// q.setString(1, req.numero);
-			ResultSet rs = q.executeQuery();
-
-			while (rs.next()) {
-				IdNome in = new IdNome();
-				in.id = rs.getString("id");
-				in.nome = rs.getString("nome");
-				resp.list.add(in);
-			}
-		}
+		throw new Exception("Não implementado");
 	}
 
 	@Override

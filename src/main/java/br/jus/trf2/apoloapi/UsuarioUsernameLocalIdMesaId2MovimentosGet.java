@@ -9,6 +9,7 @@ public class UsuarioUsernameLocalIdMesaId2MovimentosGet implements IUsuarioUsern
 	@Override
 	public void run(UsuarioUsernameLocalIdMesaId2MovimentosGetRequest req,
 			UsuarioUsernameLocalIdMesaId2MovimentosGetResponse resp) throws Exception {
+		throw new Exception("Não implementado");
 	}
 
 	@Override

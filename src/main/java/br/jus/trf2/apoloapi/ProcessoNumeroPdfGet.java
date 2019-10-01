@@ -8,6 +8,7 @@ public class ProcessoNumeroPdfGet implements IProcessoNumeroPdfGet {
 
 	@Override
 	public void run(ProcessoNumeroPdfGetRequest req, ProcessoNumeroPdfGetResponse resp) throws Exception {
+		throw new Exception("Não implementado");
 	}
 
 	@Override

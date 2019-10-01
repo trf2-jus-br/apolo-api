@@ -9,6 +9,7 @@ public class UsuarioUsernameAvisoConfirmadoExportarGet implements IUsuarioUserna
 	@Override
 	public void run(UsuarioUsernameAvisoConfirmadoExportarGetRequest req,
 			UsuarioUsernameAvisoConfirmadoExportarGetResponse resp) throws Exception {
+		throw new Exception("Não implementado");
 	}
 
 	@Override

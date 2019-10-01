@@ -9,6 +9,7 @@ public class UsuarioUsernameAvisoPendenteExportarGet implements IUsuarioUsername
 	@Override
 	public void run(UsuarioUsernameAvisoPendenteExportarGetRequest req,
 			UsuarioUsernameAvisoPendenteExportarGetResponse resp) throws Exception {
+		throw new Exception("Não implementado");
 	}
 
 	@Override

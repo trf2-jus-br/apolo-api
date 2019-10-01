@@ -14,23 +14,7 @@ public class PessoaFisicaDocumentoGet implements IPessoaFisicaDocumentoGet {
 
 	@Override
 	public void run(PessoaFisicaDocumentoGetRequest req, PessoaFisicaDocumentoGetResponse resp) throws Exception {
-		resp.list = new ArrayList<>();
-
-		try (Connection conn = Utils.getConnection();
-				PreparedStatement q = conn.prepareStatement(Utils.getSQL("pessoa-fisica-documento-get"))) {
-			q.setString(1, req.documento);
-			ResultSet rs = q.executeQuery();
-
-			while (rs.next()) {
-				Pessoa in = new Pessoa();
-				in.id = rs.getString("id");
-				in.nome = rs.getString("nome");
-				in.documento = rs.getString("documento");
-				in.tipodedocumento = rs.getString("tipodedocumento");
-
-				resp.list.add(in);
-			}
-		}
+		throw new Exception("Não implementado");
 	}
 
 	@Override

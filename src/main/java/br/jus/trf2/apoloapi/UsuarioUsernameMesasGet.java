@@ -8,6 +8,7 @@ public class UsuarioUsernameMesasGet implements IUsuarioUsernameMesasGet {
 
 	@Override
 	public void run(UsuarioUsernameMesasGetRequest req, UsuarioUsernameMesasGetResponse resp) throws Exception {
+		throw new Exception("Não implementado");
 	}
 
 	@Override

@@ -9,6 +9,7 @@ public class UsuarioUsernameLocalIdMesaId2DocumentosGet implements IUsuarioUsern
 	@Override
 	public void run(UsuarioUsernameLocalIdMesaId2DocumentosGetRequest req,
 			UsuarioUsernameLocalIdMesaId2DocumentosGetResponse resp) throws Exception {
+		throw new Exception("Não implementado");
 	}
 
 	@Override
