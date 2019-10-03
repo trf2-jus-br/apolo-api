@@ -35,9 +35,6 @@ public class UsuarioUsernameGet implements IUsuarioUsernameGet {
 
 		String username = login.toUpperCase();
 		String hash = SwaggerUtils.base64Encode(Utils.calcSha1(password.getBytes(StandardCharsets.US_ASCII)));
-		System.out.println(hash);
-		if (!hash.equals("fCIvspJ9goryL1khNOiTJIBjfA0="))
-			throw new Exception("senha errada: " + hash);
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn.prepareStatement(Utils.getSQL("usuario-username-get"))) {
 			q.setString(1, username);
