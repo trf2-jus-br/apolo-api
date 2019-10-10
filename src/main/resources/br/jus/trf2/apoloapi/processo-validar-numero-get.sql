@@ -9,7 +9,29 @@ select
       else
          0 
    end
-) as perdecompetencia , s.descr as orgao, lf.nome as unidade, va.nomesint as localnaunidade, t_processo.numproccompl as numero, t_processo.indsegrjustsist segredodejusticadesistema, t_processo.indsegrjustabs segredodejusticaabsoluto, t_processo.coddoc coddoc, t_processo.indproceletr eletronico, t_processo.indbaixa baixado, t_processo.dthrultmov as dataultimomovimento, t_processo.indativo as ativo 
+) as perdecompetencia , s.descr as orgao, lf.nome as unidade, va.nomesint as localnaunidade, t_processo.numproccompl as numero, t_processo.indsegrjustsist segredodejusticadesistema, t_processo.indsegrjustabs segredodejusticaabsoluto, t_processo.coddoc coddoc, t_processo.indproceletr eletronico, t_processo.indbaixa baixado, t_processo.dthrultmov as dataultimomovimento, t_processo.indativo as ativo , 
+   (
+      select
+(decode(count(m.coddoc), 1, 'S', 'N')) as sentenciado 
+      from
+         movintimacao m 
+      where
+         t_processo.coddoc = m.coddoc 
+         and m.codcompl1 = 3 
+         and m.dthrmov = 
+         (
+            select
+               max(mi.dthrmov) 
+            from
+               movintimacao mi 
+            where
+               mi.coddoc = m.coddoc 
+               and mi.codcompl1 = 3 
+               and t_processo.codsecao = mi.codsecao 
+         )
+         and t_processo.indbaixa = 'N'
+   )
+   sentenciado 
 from
    processolocal lc 
    inner join
@@ -23,9 +45,9 @@ from
       on (va.codvara = 
       (
          select
-            localatualprocesso(lc.codsecao, t_processo.coddoc)
+            localatualprocesso(lc.codsecao, t_processo.coddoc) 
          from
-            dual
+            dual 
       )
       and va.indativo = 'S') 
    inner join
@@ -33,22 +55,15 @@ from
       on (lf.codlocfis = 
       (
          select
-            localatualprocesso(lc.codsecao, t_processo.coddoc)
-         from
-            dual
-      )
-      and lf.indativo = 'S'),
-      (
-         select
-            ? as num_processo 
+            localatualprocesso(lc.codsecao, t_processo.coddoc) 
          from
             dual 
       )
-      processo 
+      and lf.indativo = 'S') 
 where
    (
-      processo.num_processo = t_processo.numproccompl 
-      or processo.num_processo = t_processo.numproccomplant
+      t_processo.numproccompl in (:list)
+      or t_processo.numproccomplant in (:list)
    )
    and lc.dthrmov = 
    (
