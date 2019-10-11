@@ -5,8 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.crivano.swaggerservlet.ISwaggerPublicMethod;
 import com.crivano.swaggerservlet.PresentableException;
-import com.crivano.swaggerservlet.PresentableUnloggedException;
+import com.crivano.swaggerservlet.SwaggerAuthorizationException;
 import com.crivano.swaggerservlet.SwaggerServlet;
 import com.crivano.swaggerservlet.SwaggerUtils;
 
@@ -14,7 +15,7 @@ import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameGetRequest;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameGetResponse;
 
-public class UsuarioUsernameGet implements IUsuarioUsernameGet {
+public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMethod {
 
 	@Override
 	public void run(UsuarioUsernameGetRequest req, UsuarioUsernameGetResponse resp) throws Exception {
@@ -58,7 +59,7 @@ public class UsuarioUsernameGet implements IUsuarioUsernameGet {
 			}
 
 			if (resp.codusu == null)
-				throw new PresentableUnloggedException(
+				throw new SwaggerAuthorizationException(
 						"Não foi possível localizar informações para o usuário '" + req.username + "'");
 		}
 	}
