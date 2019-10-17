@@ -4,9 +4,9 @@ select
       when
          (lc.codenvdoc = '10115' and lc.indreceb = 'S') or (exists(select 1 from movbaixaarquivamento m where m.coddoc=t_processo.coddoc and m.codcompl1=722)) 
       then
-         1 
+         'S' 
       else
-         0 
+         'N'
    end
 ) as perdecompetencia , s.descr as orgao, lf.nome as unidade, va.nomesint as localnaunidade, t_processo.numproccompl as numero, t_processo.indsegrjustsist segredodejusticadesistema, t_processo.indsegrjustabs segredodejusticaabsoluto, t_processo.coddoc coddoc, t_processo.indproceletr eletronico, t_processo.indbaixa baixado, t_processo.dthrultmov as dataultimomovimento, t_processo.indativo as ativo , 
    (
