@@ -2,8 +2,7 @@ select
 ( 
    case
       when
-         lc.codenvdoc = '10115' 
-         and lc.indreceb = 'S' 
+         (lc.codenvdoc = '10115' and lc.indreceb = 'S') or (exists(select 1 from movbaixaarquivamento m where m.coddoc=t_processo.coddoc and m.codcompl1=722)) 
       then
          1 
       else
