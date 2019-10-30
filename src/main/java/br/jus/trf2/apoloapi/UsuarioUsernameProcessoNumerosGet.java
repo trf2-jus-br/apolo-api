@@ -51,6 +51,8 @@ public class UsuarioUsernameProcessoNumerosGet implements IUsuarioUsernameProces
 				// p.cdas = rs.getString("cdas");
 				p.dataultimomovimento = Utils.formatarDataHoraMinuto(rs.getTimestamp("dataultimomovimento"));
 				p.sentenciado = "S".equals(rs.getString("sentenciado"));
+				p.autor = rs.getString("autor");
+				p.reu = rs.getString("reu");
 
 				resp.list = new ArrayList<>();
 				resp.list.add(p);

@@ -76,7 +76,9 @@ select
          )
          and t_processo.indbaixa = 'N' 
    )
-   sentenciado 
+   sentenciado,
+   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'S', 'N', 'N', 'N')) as autor,
+   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu
 from
    processolocal lc 
    inner join
