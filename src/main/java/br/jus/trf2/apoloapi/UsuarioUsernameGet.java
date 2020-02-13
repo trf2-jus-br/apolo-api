@@ -35,11 +35,12 @@ public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMe
 			throw new PresentableException("É necessário informar a senha");
 
 		String username = login.toUpperCase();
+		String hashUpper = SwaggerUtils.base64Encode(Utils.calcSha1(password.toUpperCase().getBytes(StandardCharsets.US_ASCII)));
 		String hash = SwaggerUtils.base64Encode(Utils.calcSha1(password.getBytes(StandardCharsets.US_ASCII)));
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn.prepareStatement(Utils.getSQL("usuario-username-get"))) {
 			q.setString(1, username);
-			q.setString(2, hash);
+			q.setString(2, hashUpper);
 			q.setString(3, username);
 			q.setString(4, hash);
 			ResultSet rs = q.executeQuery();
