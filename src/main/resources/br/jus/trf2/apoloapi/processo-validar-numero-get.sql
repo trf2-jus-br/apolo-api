@@ -8,7 +8,7 @@ select
          )
          or 
          (
-            exists
+            exists 
             (
                select
                   1 
@@ -21,14 +21,14 @@ select
          )
          or 
          (
-            exists
+            exists 
             (
                select
                   1 
                from
                   migradoseproc 
                where
-                  coddoc in
+                  coddoc in 
                   (
                      select
                         p.coddoc 
@@ -36,14 +36,14 @@ select
                         t_processo p 
                      where
                         (
-(p.numproccompl in
+(p.numproccompl in 
                            (
-                              t_processo.numproccompl
+                              t_processo.numproccompl 
                            )
 ) 
-                           or p.numproccompl in
+                           or p.numproccompl in 
                            (
-                              t_processo.numproccomplant
+                              t_processo.numproccomplant 
                            )
                         )
                   )
@@ -78,7 +78,7 @@ select
    )
    sentenciado,
    trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'S', 'N', 'N', 'N')) as autor,
-   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu
+   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu 
 from
    processolocal lc 
    inner join
@@ -89,14 +89,7 @@ from
       on ( lc.coddoc = t_processo.coddoc) 
    inner join
       vara va 
-      on (va.codvara = 
-      (
-         select
-            localatualprocesso(lc.codsecao, t_processo.coddoc) 
-         from
-            dual 
-      )
-      and va.indativo = 'S') 
+      on (va.codvara = t_processo.codvara ) 
    inner join
       localfisico lf 
       on (lf.codlocfis = 
