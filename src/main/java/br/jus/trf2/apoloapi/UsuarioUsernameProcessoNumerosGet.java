@@ -24,10 +24,9 @@ public class UsuarioUsernameProcessoNumerosGet implements IUsuarioUsernameProces
 		statement = statement.replace(":list", new String(markers));
 		try (Connection conn = Utils.getConnection(); PreparedStatement q = conn.prepareStatement(statement)) {
 			int i = 1;
-			for (String s : list)
-				q.setString(i++, s);
-			for (String s : list)
-				q.setString(i++, s);
+			for (int j = 0; j < 4; j++)
+				for (String s : list)
+					q.setString(i++, s);
 			ResultSet rs = q.executeQuery();
 
 			resp.list = new ArrayList<>();

@@ -45,3 +45,4 @@ where
    upper(uws.login) = ?
    and uws.senha = ?
    and uws.indativo = 'S'
+   and uws.dtrecebtermo is not null
