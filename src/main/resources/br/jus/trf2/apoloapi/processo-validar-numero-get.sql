@@ -103,6 +103,7 @@ where
    case
       when  ( lc.codenvdoc = '10115' and lc.indreceb = 'S')
       or (select localatualprocesso (s.codsecao, t_processo.coddoc) from dual)=10043
+      or (select localatualprocesso (s.codsecao, t_processo.coddoc) from dual)=10044
             or (exists ( select 1 from movbaixaarquivamento m where m.coddoc = t_processo.coddoc and m.codcompl1 = 722))
             or (exists (select
                   1 
