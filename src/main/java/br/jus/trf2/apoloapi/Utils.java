@@ -20,7 +20,7 @@ import com.crivano.swaggerservlet.SwaggerServlet;
 
 public class Utils {
 	public static Connection getConnection() throws Exception {
-		String dsName = SwaggerServlet.getProperty("datasource.name");
+		String dsName = ApoloServlet.INSTANCE.getProperty("datasource.name");
 		if (dsName != null) {
 			Context initContext = new InitialContext();
 			Context envContext = (Context) initContext.lookup("java:");
@@ -34,20 +34,20 @@ public class Utils {
 
 			Class.forName("oracle.jdbc.OracleDriver");
 
-			String dbURL = SwaggerServlet.getProperty("datasource.url");
-			String username = SwaggerServlet.getProperty("datasource.username");
+			String dbURL = ApoloServlet.INSTANCE.getProperty("datasource.url");
+			String username = ApoloServlet.INSTANCE.getProperty("datasource.username");
 			;
-			String password = SwaggerServlet.getProperty("datasource.password");
+			String password = ApoloServlet.INSTANCE.getProperty("datasource.password");
 			;
 			connection = DriverManager.getConnection(dbURL, username, password);
 			if (connection == null)
 				throw new Exception("Can't open connection to database.");
 
-			if (SwaggerServlet.getProperty("datasource.schema") != null) {
+			if (ApoloServlet.INSTANCE.getProperty("datasource.schema") != null) {
 				PreparedStatement pstmt = null;
 				try {
 					pstmt = connection.prepareStatement(
-							"alter session set current_schema=" + SwaggerServlet.getProperty("datasource.schema"));
+							"alter session set current_schema=" + ApoloServlet.INSTANCE.getProperty("datasource.schema"));
 					pstmt.execute();
 				} finally {
 					if (pstmt != null)

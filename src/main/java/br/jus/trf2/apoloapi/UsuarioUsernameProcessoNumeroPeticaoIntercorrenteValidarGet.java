@@ -29,7 +29,7 @@ public class UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGet
 			while (rs.next()) {
 				TipoPeticaoIntercorrente in = new TipoPeticaoIntercorrente();
 				in.id = rs.getString("id");
-				if (in.id.equals("138") && SwaggerServlet.getProperty("orgao.sigla").equals("JFRJ"))
+				if (in.id.equals("138") && ApoloServlet.INSTANCE.getProperty("orgao.sigla").equals("JFRJ"))
 					continue;
 				in.descricao = rs.getString("nome");
 				resp.tipos.add(in);
