@@ -1,13 +1,12 @@
 package br.jus.trf2.apoloapi;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.AdvogadoDocumentoGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.AdvogadoDocumentoGetResponse;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IAdvogadoDocumentoGet;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class AdvogadoDocumentoGet implements IAdvogadoDocumentoGet {
 
 	@Override
-	public void run(AdvogadoDocumentoGetRequest req, AdvogadoDocumentoGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 		throw new Exception("Não implementado");
 	}
 

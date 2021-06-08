@@ -12,13 +12,12 @@ import com.crivano.swaggerservlet.SwaggerServlet;
 import com.crivano.swaggerservlet.SwaggerUtils;
 
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameGet;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameGetResponse;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMethod {
 
 	@Override
-	public void run(UsuarioUsernameGetRequest req, UsuarioUsernameGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 		String login;
 		String password;
 		String auth = SwaggerServlet.getHttpServletRequest().getHeader("Authorization");
@@ -35,7 +34,8 @@ public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMe
 			throw new PresentableException("É necessário informar a senha");
 
 		String username = login.toUpperCase();
-		String hashUpper = SwaggerUtils.base64Encode(Utils.calcSha1(password.toUpperCase().getBytes(StandardCharsets.US_ASCII)));
+		String hashUpper = SwaggerUtils
+				.base64Encode(Utils.calcSha1(password.toUpperCase().getBytes(StandardCharsets.US_ASCII)));
 		String hash = SwaggerUtils.base64Encode(Utils.calcSha1(password.getBytes(StandardCharsets.US_ASCII)));
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn.prepareStatement(Utils.getSQL("usuario-username-get"))) {

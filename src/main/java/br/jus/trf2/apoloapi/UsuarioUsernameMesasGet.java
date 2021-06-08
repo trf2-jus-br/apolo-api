@@ -1,13 +1,12 @@
 package br.jus.trf2.apoloapi;
 
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameMesasGet;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameMesasGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameMesasGetResponse;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernameMesasGet implements IUsuarioUsernameMesasGet {
 
 	@Override
-	public void run(UsuarioUsernameMesasGetRequest req, UsuarioUsernameMesasGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 		throw new Exception("Não implementado");
 	}
 

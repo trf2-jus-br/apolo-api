@@ -7,14 +7,12 @@ import java.util.ArrayList;
 
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameAvisoConfirmadoContarGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.QuantidadeConfirmada;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameAvisoConfirmadoContarGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameAvisoConfirmadoContarGetResponse;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernameAvisoConfirmadoContarGet implements IUsuarioUsernameAvisoConfirmadoContarGet {
 
 	@Override
-	public void run(UsuarioUsernameAvisoConfirmadoContarGetRequest req,
-			UsuarioUsernameAvisoConfirmadoContarGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn.prepareStatement(Utils.getSQL("aviso-confirmado-contar-get"))) {
 //			String idPessoa = UsuarioUsernameGet.getIdPessoaFromUsername(conn, req.username);

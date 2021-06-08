@@ -7,14 +7,12 @@ import java.util.ArrayList;
 
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernamePeticaoIntercorrenteListarGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.PeticaoIntercorrente;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernamePeticaoIntercorrenteListarGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernamePeticaoIntercorrenteListarGetResponse;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernamePeticaoIntercorrenteListarGet implements IUsuarioUsernamePeticaoIntercorrenteListarGet {
 
 	@Override
-	public void run(UsuarioUsernamePeticaoIntercorrenteListarGetRequest req,
-			UsuarioUsernamePeticaoIntercorrenteListarGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn
 						.prepareStatement(Utils.getSQL("usuario-username-peticao-intercorrente-listar-get"))) {

@@ -5,19 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import com.crivano.swaggerservlet.SwaggerServlet;
-
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.TipoPeticaoIntercorrente;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGetResponse;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGet
 		implements IUsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGet {
 
 	@Override
-	public void run(UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGetRequest req,
-			UsuarioUsernameProcessoNumeroPeticaoIntercorrenteValidarGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 		resp.tipos = new ArrayList<>();
 
 		try (Connection conn = Utils.getConnection();

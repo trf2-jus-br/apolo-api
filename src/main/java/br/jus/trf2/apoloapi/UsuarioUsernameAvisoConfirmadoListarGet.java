@@ -1,18 +1,12 @@
 package br.jus.trf2.apoloapi;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameAvisoConfirmadoListarGet;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameAvisoConfirmadoListarGetRequest;
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.UsuarioUsernameAvisoConfirmadoListarGetResponse;
+import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernameAvisoConfirmadoListarGet implements IUsuarioUsernameAvisoConfirmadoListarGet {
 
 	@Override
-	public void run(UsuarioUsernameAvisoConfirmadoListarGetRequest req,
-			UsuarioUsernameAvisoConfirmadoListarGetResponse resp) throws Exception {
+	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
 //		try (Connection conn = Utils.getConnection();
 //				PreparedStatement q = conn.prepareStatement(Utils.getSQL("aviso-confirmado-listar-get"))) {
 //			q.setString(1, req.numero);
