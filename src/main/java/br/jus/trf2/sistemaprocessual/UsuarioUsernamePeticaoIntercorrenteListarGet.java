@@ -1,4 +1,4 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class ApoloServlet extends SwaggerServlet {
 		
 		setAPI(ISistemaProcessual.class);
 
-		setActionPackage("br.jus.trf2.apoloapi");
+		setActionPackage("br.jus.trf2.sistemaprocessual");
 
 		addPrivateProperty("password", null);
 		super.setAuthorization(getProperty("password"));

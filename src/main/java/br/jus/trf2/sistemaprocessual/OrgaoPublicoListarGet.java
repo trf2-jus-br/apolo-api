@@ -1,9 +1,9 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.ILocalidadeIdEspecialidadeGet;
+import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IOrgaoPublicoListarGet;
 import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
-public class LocalidadeIdEspecialidadeGet implements ILocalidadeIdEspecialidadeGet {
+public class OrgaoPublicoListarGet implements IOrgaoPublicoListarGet {
 
 	@Override
 	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
@@ -12,6 +12,6 @@ public class LocalidadeIdEspecialidadeGet implements ILocalidadeIdEspecialidadeG
 
 	@Override
 	public String getContext() {
-		return "obter especialidades da localidade";
+		return "obter lista de órgãos públicos";
 	}
 }

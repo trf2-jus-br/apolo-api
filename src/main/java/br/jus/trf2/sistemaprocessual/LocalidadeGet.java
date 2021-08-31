@@ -1,9 +1,9 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IAdvogadoDocumentoGet;
+import br.jus.trf2.sistemaprocessual.ISistemaProcessual.ILocalidadeGet;
 import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
-public class AdvogadoDocumentoGet implements IAdvogadoDocumentoGet {
+public class LocalidadeGet implements ILocalidadeGet {
 
 	@Override
 	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
@@ -12,6 +12,6 @@ public class AdvogadoDocumentoGet implements IAdvogadoDocumentoGet {
 
 	@Override
 	public String getContext() {
-		return "obter documento de advogado";
+		return "obter localidade";
 	}
 }

@@ -1,4 +1,4 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

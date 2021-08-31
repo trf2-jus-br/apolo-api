@@ -1,4 +1,4 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

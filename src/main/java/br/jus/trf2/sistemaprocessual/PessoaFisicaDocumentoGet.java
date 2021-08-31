@@ -1,9 +1,9 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IOrgaoPublicoListarGet;
+import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IPessoaFisicaDocumentoGet;
 import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
-public class OrgaoPublicoListarGet implements IOrgaoPublicoListarGet {
+public class PessoaFisicaDocumentoGet implements IPessoaFisicaDocumentoGet {
 
 	@Override
 	public void run(Request req, Response resp, SistemaProcessualContext ctx) throws Exception {
@@ -12,6 +12,6 @@ public class OrgaoPublicoListarGet implements IOrgaoPublicoListarGet {
 
 	@Override
 	public String getContext() {
-		return "obter lista de órgãos públicos";
+		return "obter documento de pessoa física";
 	}
 }

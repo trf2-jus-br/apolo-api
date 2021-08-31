@@ -1,4 +1,4 @@
-package br.jus.trf2.apoloapi;
+package br.jus.trf2.sistemaprocessual;
 
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameLocalIdMesaId2DocumentosGet;
 import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
