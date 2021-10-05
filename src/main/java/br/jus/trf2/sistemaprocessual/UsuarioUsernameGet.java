@@ -12,7 +12,6 @@ import com.crivano.swaggerservlet.SwaggerServlet;
 import com.crivano.swaggerservlet.SwaggerUtils;
 
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameGet;
-import br.jus.trf2.sistemaprocessual.SistemaProcessualContext;
 
 public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMethod {
 
@@ -33,16 +32,13 @@ public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMe
 		if (password == null)
 			throw new PresentableException("É necessário informar a senha");
 
-		String username = login.toUpperCase();
-		String hashUpper = SwaggerUtils
-				.base64Encode(Utils.calcSha1(password.toUpperCase().getBytes(StandardCharsets.US_ASCII)));
-		String hash = SwaggerUtils.base64Encode(Utils.calcSha1(password.getBytes(StandardCharsets.US_ASCII)));
+		PasswordHash ph = new PasswordHash(login, password);
 		try (Connection conn = Utils.getConnection();
 				PreparedStatement q = conn.prepareStatement(Utils.getSQL("usuario-username-get"))) {
-			q.setString(1, username);
-			q.setString(2, hashUpper);
-			q.setString(3, username);
-			q.setString(4, hash);
+			q.setString(1, ph.username);
+			q.setString(2, ph.hashUpper);
+			q.setString(3, ph.username);
+			q.setString(4, ph.hash);
 			ResultSet rs = q.executeQuery();
 
 			while (rs.next()) {
@@ -62,6 +58,19 @@ public class UsuarioUsernameGet implements IUsuarioUsernameGet, ISwaggerPublicMe
 			if (resp.codusu == null)
 				throw new SwaggerAuthorizationException(
 						"Não foi possível localizar informações para o usuário '" + req.username + "'");
+		}
+	}
+
+	public static class PasswordHash {
+		public String username;
+		public String hashUpper;
+		public String hash;
+
+		public PasswordHash(String login, String password) throws Exception {
+			username = login.toUpperCase();
+			hashUpper = SwaggerUtils
+					.base64Encode(Utils.calcSha1(password.toUpperCase().getBytes(StandardCharsets.US_ASCII)));
+			hash = SwaggerUtils.base64Encode(Utils.calcSha1(password.getBytes(StandardCharsets.US_ASCII)));
 		}
 	}
 
