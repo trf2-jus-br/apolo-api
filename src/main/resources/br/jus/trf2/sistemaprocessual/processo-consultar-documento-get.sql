@@ -92,7 +92,8 @@ from
       on (pe1.codpess = pp1.codpess)	  
 where
    (
-     pe2.nome = ?
+    pd1.numdocpess = ?
+      
    )
  and lc.dthrmov = 
    (
@@ -202,7 +203,7 @@ from
       on (pe2.codpess = pp2.codpess)
 where
    (
-   pe2.nome = ?
+      pd1.numdocpess = ?
    )
  and lc.dthrmov = 
    (
