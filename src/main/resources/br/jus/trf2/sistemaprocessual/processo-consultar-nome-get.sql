@@ -92,7 +92,7 @@ from
       on (pe1.codpess = pp1.codpess)	  
 where
    (
-     pe2.nome = ?
+     pe1.nome = ?
    )
  and lc.dthrmov = 
    (

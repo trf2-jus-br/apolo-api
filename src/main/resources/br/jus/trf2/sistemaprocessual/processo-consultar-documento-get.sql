@@ -203,7 +203,7 @@ from
       on (pe2.codpess = pp2.codpess)
 where
    (
-      pd1.numdocpess = ?
+      pd2.numdocpess = ?
    )
  and lc.dthrmov = 
    (
