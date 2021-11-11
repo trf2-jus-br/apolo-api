@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameNomeParteProcessoNomeConsultarGet;
+import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameProcessoNomeparteConsultarNomeGet;
+import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameProcessoNomeparteConsultarNomeGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.Processo;
 
-public class UsuarioUsernameNomeParteProcessoNomeConsultarGet 
-implements IUsuarioUsernameNomeParteProcessoNomeConsultarGet {
+public class UsuarioUsernameProcessoNomeparteConsultarNomeGet 
+implements IUsuarioUsernameProcessoNomeparteConsultarNomeGet {
 
 	@Override
 	public String getContext() {
@@ -22,8 +23,8 @@ implements IUsuarioUsernameNomeParteProcessoNomeConsultarGet {
 
 		try (Connection conn = Utils.getConnection(); 
 			PreparedStatement q = conn.prepareStatement(Utils.getSQL("processo-consultar-nome-get"))) {
-			q.setString(1, req.nome);
-			q.setString(2, req.nome);
+			q.setString(1, req.nomeparte);
+			q.setString(2, req.nomeparte);
 			ResultSet rs = q.executeQuery();
 
 			resp.list = new ArrayList<>();

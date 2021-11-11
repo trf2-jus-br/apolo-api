@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameDocumentoParteProcessoDocumentoConsultarGet;
+import br.jus.trf2.sistemaprocessual.ISistemaProcessual.IUsuarioUsernameProcessoDocumentoConsultarDocumentoGet;
 import br.jus.trf2.sistemaprocessual.ISistemaProcessual.Processo;
 
-public class UsuarioUsernameDocumentoParteProcessoDocumentoConsultarGet 
-implements IUsuarioUsernameDocumentoParteProcessoDocumentoConsultarGet {
+public class UsuarioUsernameProcessoDocumentoConsultarDocumentoGet 
+implements IUsuarioUsernameProcessoDocumentoConsultarDocumentoGet {
 
 	@Override
 	public String getContext() {
