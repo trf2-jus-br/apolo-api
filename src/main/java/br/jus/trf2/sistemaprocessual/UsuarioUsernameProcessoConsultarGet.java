@@ -47,14 +47,14 @@ public class UsuarioUsernameProcessoConsultarGet implements IUsuarioUsernameProc
 				p.usuarioautorizado = true; // Esse nós ainda precisamos
 											// descobrir como fazer para
 											// pesquisar?
-				p.segredodejustica = rs.getBoolean("segredodejustica");
-				p.segredodejusticadesistema = rs.getBoolean("segredodejusticadesistema");
-				p.segredodejusticaabsoluto = rs.getBoolean("segredodejusticaabsoluto");
+				p.segredodejusticadesistema = "S".equals(rs.getString("segredodejusticadesistema"));
+				p.segredodejusticaabsoluto = "S".equals(rs.getString("segredodejusticaabsoluto"));
+				p.segredodejustica = p.segredodejusticadesistema || p.segredodejusticaabsoluto;
 				p.eletronico = true;
-				p.sentenciado = rs.getBoolean("sentenciado");
-				p.baixado = rs.getBoolean("baixado");
-				p.perdecompetencia = rs.getBoolean("perdecompetencia");
-				p.cdas = rs.getString("cdas");
+				p.sentenciado = "S".equals(rs.getString("sentenciado"));
+				p.baixado = "S".equals(rs.getString("baixado"));
+				p.perdecompetencia = "S".equals(rs.getString("perdecompetencia"));
+				//p.cdas = rs.getString("cdas");
 				p.dataultimomovimento = Utils.formatarDataHoraMinuto(rs.getTimestamp("dataultimomovimento"));
 				p.autor = rs.getString("autor");
 				p.reu = rs.getString("reu");
