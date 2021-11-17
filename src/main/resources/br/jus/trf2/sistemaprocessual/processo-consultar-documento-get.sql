@@ -58,7 +58,8 @@ select
    )
    sentenciado,
    trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'S', 'N', 'N', 'N')) as autor,
-   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu
+   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu,
+   pd1.numdocpess as cpfcnpj
 from
    processolocal lc 
    inner JOIN
@@ -169,7 +170,8 @@ where
    )
    sentenciado,
    trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'S', 'N', 'N', 'N')) as autor,
-   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu
+   trim(AUTORXREU (s.codsecao, t_processo.coddoc, 'N', 'S', 'N', 'N')) as reu,
+   pd2.numdocpess as cpfcnpj
 from
    processolocal lc 
    inner JOIN
