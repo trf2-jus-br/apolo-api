@@ -107,6 +107,7 @@ where
          and pl.codsecao = lc.codsecao 
          and pl.indreceb = 'S' 
    )
+   and  ROWNUM <=100
    union
    select
 ( 
@@ -218,3 +219,4 @@ where
          and pl.codsecao = lc.codsecao 
          and pl.indreceb = 'S' 
    )
+   and  ROWNUM <=100
