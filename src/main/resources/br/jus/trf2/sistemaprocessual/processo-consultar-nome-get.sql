@@ -133,8 +133,10 @@ from
             on (pe1.codpess = pp1.codpess) 
       where
          (
-            pe1.nome = ? 				--pd1.numdocpess = '41726618749'
+            UPPER(pe1.nome) = ? 				
          )
+         and t_processo.indsegrjustsist='N'
+   		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
          (
             select
@@ -277,7 +279,7 @@ from
             on (pe2.codpess = pp2.codpess) 
       where
          (
-            pe2.nome = ? 				--pd2.numdocpess = '41726618749'
+            UPPER (pe2.nome) = ?
          )
          and lc.dthrmov = 
          (

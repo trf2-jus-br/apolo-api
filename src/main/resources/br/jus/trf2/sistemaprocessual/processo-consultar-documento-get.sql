@@ -135,6 +135,8 @@ from
          (
            pd1.numdocpess = ?
          )
+         and t_processo.indsegrjustsist='N'
+   		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
          (
             select
@@ -279,6 +281,8 @@ from
          (
             pd2.numdocpess = ?
          )
+         and t_processo.indsegrjustsist='N'
+   		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
          (
             select
