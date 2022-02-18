@@ -16,7 +16,7 @@ select distinct
    reu,
    LISTAGG(oab, ', ') WITHIN GROUP (
 ORDER BY
-   cpfcnpj) "cpfcnpj" 
+   oab) "oab" 
 from
    (
       select
