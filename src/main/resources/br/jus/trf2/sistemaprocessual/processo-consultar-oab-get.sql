@@ -290,7 +290,7 @@ from
          )
    )
 where
-   ROWNUM <= 100 
+   ROWNUM <= 5 
 group by
    numero,
    perdecompetencia,
