@@ -132,6 +132,7 @@ from
          (
            a1.codoab = ?
          )
+         and t_processo.indbaixa='N'
          and t_processo.indsegrjustsist='N'
    		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
@@ -275,6 +276,7 @@ from
          (
             a2.codoab = ?
          )
+         and t_processo.indbaixa='N'
          and t_processo.indsegrjustsist='N'
    		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 

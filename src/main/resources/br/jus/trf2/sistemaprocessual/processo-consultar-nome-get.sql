@@ -135,6 +135,7 @@ from
          (
             UPPER(pe1.nome) = ? 				
          )
+         and t_processo.indbaixa='N'
          and t_processo.indsegrjustsist='N'
    		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
@@ -281,6 +282,7 @@ from
          (
             UPPER (pe2.nome) = ?
          )
+         and t_processo.indbaixa='N'
          and lc.dthrmov = 
          (
             select

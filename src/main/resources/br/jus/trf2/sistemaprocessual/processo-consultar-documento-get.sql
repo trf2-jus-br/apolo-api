@@ -135,6 +135,7 @@ from
          (
            pd1.numdocpess = ?
          )
+         and t_processo.indbaixa='N'
          and t_processo.indsegrjustsist='N'
    		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
@@ -281,6 +282,7 @@ from
          (
             pd2.numdocpess = ?
          )
+         and t_processo.indbaixa='N'
          and t_processo.indsegrjustsist='N'
    		 and t_processo.indsegrjustabs='N'
          and lc.dthrmov = 
