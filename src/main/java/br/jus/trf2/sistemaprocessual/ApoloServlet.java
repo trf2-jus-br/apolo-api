@@ -29,7 +29,7 @@ public class ApoloServlet extends SwaggerServlet {
 		super.setAuthorization(getProperty("password"));
 
 		addPublicProperty("orgao.sigla");
-		
+		addPrivateProperty("limite.consulta.processo");
 		addRestrictedProperty("datasource.url", null);
 		if (getProperty("datasource.url") != null) {
 			addRestrictedProperty("datasource.username");

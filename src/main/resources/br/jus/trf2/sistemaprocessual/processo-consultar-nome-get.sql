@@ -296,7 +296,7 @@ from
          )
    )
 where
-   ROWNUM <= 5 
+   ROWNUM <= ? 
 group by
    numero,
    perdecompetencia,
